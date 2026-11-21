@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101827">
+<title>SHERAZ QR STUDIO</title>
+<style>
+:root{--bg:#0b1220;--panel:#111c2e;--panel2:#16243a;--line:#263750;--text:#edf4ff;--muted:#91a2bb;--blue:#4b8cff;--cyan:#65d5ed;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#172d50 0,transparent 38%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}
+.header{height:72px;border-bottom:1px solid #263750;background:#0b1220d9;backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:space-between;padding:0 max(18px,calc((100vw - 1160px)/2));position:sticky;top:0;z-index:10}.brand{display:flex;align-items:center;gap:11px;font-weight:900;letter-spacing:.5px}.logo{height:39px;width:39px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#3982ff,#63d9ee);color:#061326;font-weight:1000;font-size:20px;box-shadow:0 8px 24px #3982ff44}.brand small{display:block;color:#7f93b2;font-size:9px;letter-spacing:2px;margin-top:3px}.header-tag{font-size:11px;color:#9fb2ce;border:1px solid #2b405d;padding:8px 11px;border-radius:99px}
+.container{max-width:1160px;margin:auto;padding:38px 20px 60px}.intro{text-align:center;margin:8px auto 30px;max-width:700px}.eyebrow{display:inline-flex;align-items:center;gap:7px;color:#8bc9ff;background:#172c49;border:1px solid #29496d;border-radius:99px;padding:7px 12px;font-size:10px;font-weight:850;letter-spacing:1.2px}.intro h1{font-size:clamp(30px,5vw,48px);line-height:1.08;letter-spacing:-1.8px;margin:18px 0 12px}.intro h1 span{background:linear-gradient(90deg,#70a8ff,#67dff0);-webkit-background-clip:text;background-clip:text;color:transparent}.intro p{color:#9aabc3;font-size:14px;line-height:1.7;margin:0}
+.layout{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(320px,.88fr);gap:20px;align-items:start}.panel{background:linear-gradient(180deg,#142239,#101b2d);border:1px solid #293b55;border-radius:19px;box-shadow:0 20px 60px #0003;overflow:hidden}.panel-head{padding:19px 21px;border-bottom:1px solid #293b55;display:flex;justify-content:space-between;align-items:center}.panel-head h2{font-size:14px;margin:0;letter-spacing:.2px}.step{font-size:10px;color:#91a6c4;background:#1d304a;padding:6px 9px;border-radius:99px}.panel-body{padding:20px}
+.tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:19px}.tab{border:1px solid #2a3d58;background:#101b2d;color:#a9bad1;border-radius:10px;padding:10px 5px;font-size:11px;font-weight:800}.tab.active{color:#fff;background:#1d4c8e;border-color:#4389ed;box-shadow:inset 0 0 0 1px #4389ed33}.tab span{display:block;font-size:17px;margin-bottom:4px}
+.label{display:block;font-size:11px;color:#c0cee1;font-weight:800;margin:0 0 8px}.field{margin-bottom:17px}.field textarea,.field input[type=text],.field input[type=url],.field input[type=tel],.field select{width:100%;background:#0c1728;border:1px solid #2a3d58;color:#f2f7ff;border-radius:11px;padding:12px 13px;outline:none;font-size:13px}.field textarea{min-height:118px;resize:vertical;line-height:1.55}.field textarea:focus,.field input:focus,.field select:focus{border-color:#5b9aff;box-shadow:0 0 0 3px #4389ed20}.field small,.help{display:block;color:#8094b1;font-size:10px;line-height:1.6;margin-top:7px}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.filebox{border:1px dashed #466183;border-radius:12px;background:#0c1728;padding:17px;text-align:center}.filebox input{max-width:100%;font-size:11px;color:#aabbd1}.filebox strong{display:block;font-size:12px;margin-bottom:5px}.filebox p{font-size:10px;color:#8da1bd;line-height:1.5;margin:0 0 12px}.colors{display:grid;grid-template-columns:1fr 1fr;gap:12px}.colorfield{background:#0c1728;border:1px solid #2a3d58;border-radius:11px;padding:9px 10px;display:flex;align-items:center;justify-content:space-between;color:#aebfd5;font-size:11px}.colorfield input{width:32px;height:27px;border:0;background:none;padding:0}.generate{width:100%;border:0;border-radius:12px;padding:14px;background:linear-gradient(100deg,#397dff,#4aabea);color:white;font-weight:900;font-size:13px;box-shadow:0 10px 24px #397dff38}.generate:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.preview-panel{position:sticky;top:92px}.preview-area{padding:25px 20px 20px;text-align:center}.qr-frame{width:min(100%,310px);aspect-ratio:1;margin:0 auto 18px;background:#fff;border-radius:17px;padding:17px;display:grid;place-items:center;box-shadow:0 15px 40px #0004}.qr-frame canvas,.qr-frame img{max-width:100%;height:auto!important;image-rendering:pixelated}.placeholder{color:#536783;font-size:12px;line-height:1.7}.placeholder .big{font-size:48px;display:block;margin-bottom:8px}.qr-title{font-size:15px;font-weight:900;margin:0 0 5px}.qr-sub{font-size:11px;color:#8ea2bf;margin:0 0 17px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.action{border:1px solid #334966;background:#1a2b43;color:#dce9fc;border-radius:10px;padding:11px;font-size:11px;font-weight:850}.action.primary{background:#eaf3ff;color:#1a4f9a;border-color:#eaf3ff}.action:disabled{opacity:.4;cursor:not-allowed}.result-note{margin:15px 0 0;padding:11px;border-radius:10px;background:#122b2b;border:1px solid #24514d;color:#9ee1d1;font-size:10px;line-height:1.55;text-align:left}.notice{margin-top:20px;border:1px solid #584b2d;background:#2b2618;color:#e7d7a8;border-radius:12px;padding:13px 14px;font-size:10px;line-height:1.65}.notice b{color:#ffdf87}.footer{text-align:center;color:#6f829f;font-size:10px;margin-top:30px;letter-spacing:.3px}.footer strong{color:#a9bdd9}.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#edf5ff;color:#10213a;padding:11px 16px;border-radius:10px;font-size:12px;font-weight:850;transition:.2s;z-index:30;box-shadow:0 8px 30px #0005}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:820px){.container{padding:28px 15px 45px}.layout{grid-template-columns:1fr}.preview-panel{position:static}.preview-area{padding:22px 16px}.qr-frame{width:min(82vw,290px)}}
+@media(max-width:480px){.header{height:62px;padding:0 13px}.brand{font-size:12px}.logo{width:34px;height:34px}.header-tag{font-size:9px;padding:7px 8px}.container{padding:23px 11px 35px}.intro{margin-bottom:22px}.intro p{font-size:12px}.panel{border-radius:15px}.panel-head{padding:15px}.panel-body{padding:15px}.tabs{gap:5px}.tab{font-size:9px;padding:9px 2px}.tab span{font-size:15px}.two{gap:8px}.qr-frame{width:min(78vw,270px);padding:13px}.actions{gap:7px}.action{padding:10px 5px;font-size:10px}}
+</style>
+</head>
+<body>
+<header class="header">
+ <div class="brand"><div class="logo">S</div><div>SHERAZ QR STUDIO<small>POWERED BY SHERAZ 🎭</small></div></div>
+ <div class="header-tag">✦ FREE QR GENERATOR</div>
+</header>
+<main class="container">
+ <section class="intro">
+  <div class="eyebrow">⚡ SIMPLE · FAST · CUSTOMIZABLE</div>
+  <h1>Turn anything into a <span>QR code.</span></h1>
+  <p>Create custom QR codes for websites, images, videos, files, contact details and plain text. Download your QR as a high-quality PNG.</p>
+ </section>
+ <section class="layout">
+  <div class="panel">
+   <div class="panel-head"><h2>① Create your QR code</h2><span class="step">CUSTOMIZE</span></div>
+   <div class="panel-body">
+    <div class="tabs" role="tablist">
+     <button class="tab active" data-mode="url"><span>🔗</span>Link</button>
+     <button class="tab" data-mode="text"><span>✍️</span>Text</button>
+     <button class="tab" data-mode="contact"><span>👤</span>Contact</button>
+     <button class="tab" data-mode="file"><span>📁</span>File</button>
+    </div>
+    <div id="urlFields" class="mode-fields">
+     <div class="field"><label class="label" for="urlInput">WEBSITE / IMAGE / VIDEO / FILE LINK</label><input id="urlInput" type="url" placeholder="https://example.com/your-file"><small>Paste any public URL, including a website, image, video or cloud file share link.</small></div>
+    </div>
+    <div id="textFields" class="mode-fields" hidden>
+     <div class="field"><label class="label" for="textInput">YOUR TEXT OR MESSAGE</label><textarea id="textInput" placeholder="Type anything you want to share..."></textarea><small>QR codes have limited capacity. Keep text reasonably short for reliable scanning.</small></div>
+    </div>
+    <div id="contactFields" class="mode-fields" hidden>
+     <div class="two">
+      <div class="field"><label class="label" for="nameInput">FULL NAME</label><input id="nameInput" type="text" placeholder="Your name"></div>
+      <div class="field"><label class="label" for="phoneInput">PHONE</label><input id="phoneInput" type="tel" placeholder="+92 300 1234567"></div>
+     </div>
+     <div class="field"><label class="label" for="emailInput">EMAIL</label><input id="emailInput" type="text" placeholder="you@example.com"></div>
+     <div class="field"><label class="label" for="orgInput">COMPANY / ORGANIZATION</label><input id="orgInput" type="text" placeholder="Company name (optional)"></div>
+    </div>
+    <div id="fileFields" class="mode-fields" hidden>
+     <div class="field"><label class="label">CHOOSE A FILE (OPTIONAL)</label><div class="filebox"><strong>📂 Select an image, video or any file</strong><p>Choose a file to read a small text file, or use its public share link below for media and documents.</p><input id="fileInput" type="file"></div><small id="fileStatus">For a QR that opens a file on another person's device, first upload it to cloud storage and paste its share link below.</small></div>
+     <div class="field"><label class="label" for="fileUrlInput">PUBLIC FILE SHARE LINK</label><input id="fileUrlInput" type="url" placeholder="https://drive.google.com/..."><small>Use a publicly accessible download/view link from Google Drive, Dropbox, OneDrive, etc.</small></div>
+     <button type="button" class="action" id="readTextFile" style="width:100%;margin-bottom:14px">Read selected text file into QR</button>
+    </div>
+    <div class="divider" style="height:1px;background:#293b55;margin:8px 0 17px"></div>
+    <div class="field"><label class="label">QR COLORS</label><div class="colors">
+     <label class="colorfield">Foreground <input type="color" id="fgColor" value="#101827"></label>
+     <label class="colorfield">Background <input type="color" id="bgColor" value="#ffffff"></label>
+    </div></div>
+    <div class="two">
+     <div class="field"><label class="label" for="sizeSelect">IMAGE SIZE</label><select id="sizeSelect"><option value="256">256 × 256</option><option value="512" selected>512 × 512</option><option value="768">768 × 768</option><option value="1024">1024 × 1024</option></select></div>
+     <div class="field"><label class="label" for="errorSelect">ERROR CORRECTION</label><select id="errorSelect"><option value="L">Low</option><option value="M" selected>Medium</option><option value="Q">Quartile</option><option value="H">High</option></select></div>
+    </div>
+    <button class="generate" id="generateBtn">✦ GENERATE QR CODE</button>
+   </div>
+  </div>
+  <div class="panel preview-panel">
+   <div class="panel-head"><h2>② Your QR preview</h2><span class="step" id="qrStatus">WAITING</span></div>
+   <div class="preview-area">
+    <div class="qr-frame" id="qrFrame"><div class="placeholder"><span class="big">▦</span>Your QR code will appear here<br>after you generate it.</div></div>
+    <p class="qr-title">Your custom QR code</p><p class="qr-sub">Scan it with any phone camera to test.</p>
+    <div class="actions">
+     <button class="action primary" id="downloadBtn" disabled>⬇ Download PNG</button>
+     <button class="action" id="copyBtn" disabled>▣ Copy QR image</button>
+    </div>
+    <div class="result-note" id="resultNote">✓ Your QR is generated in your browser. Your entered text and links are not sent to this website's server.</div>
+   </div>
+  </div>
+ </section>
+ <div class="notice"><b>Important about files:</b> A QR code stores data, not a whole large image/video/file. To let someone open your media or document by scanning, upload it to a cloud service, enable link sharing, then generate a QR using that public share link. Small text files can be encoded directly, subject to QR capacity.</div>
+ <div class="footer">SHERAZ QR STUDIO · <strong>POWERED BY SHERAZ 🎭</strong></div>
+</main>
+<div class="toast" id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(()=>{
+ const $=id=>document.getElementById(id);let mode='url',qrData='',qrReady=false;
+ const toast=m=>{const t=$('toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2400)};
+ function setMode(next){mode=next;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.mode===next));document.querySelectorAll('.mode-fields').forEach(x=>x.hidden=true);$(next+'Fields').hidden=false}
+ document.querySelectorAll('.tab').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+ function getData(){
+  if(mode==='url'){const v=$('urlInput').value.trim();if(!v)throw Error('Please enter a link first.');try{const u=new URL(v);if(!['http:','https:','mailto:','tel:'].includes(u.protocol))throw 0;return v}catch(e){throw Error('Enter a valid link starting with https:// or http://.')}}
+  if(mode==='text'){const v=$('textInput').value.trim();if(!v)throw Error('Please enter some text.');return v}
+  if(mode==='contact'){const name=$('nameInput').value.trim(),phone=$('phoneInput').value.trim(),email=$('emailInput').value.trim(),org=$('orgInput').value.trim();if(!name&&!phone&&!email)throw Error('Enter at least a name, phone or email.');return ['BEGIN:VCARD','VERSION:3.0',name?'FN:'+name:'',org?'ORG:'+org:'',phone?'TEL:'+phone:'',email?'EMAIL:'+email:'','END:VCARD'].filter(Boolean).join('\n')}
+  if(mode==='file'){const link=$('fileUrlInput').value.trim();if(!link)throw Error('Paste a public file share link. A local file cannot be opened by another device through a QR code.');try{const u=new URL(link);if(!['http:','https:'].includes(u.protocol))throw 0;return link}catch(e){throw Error('Please enter a valid public http or https share link.')}}
+ }
+ function renderQR(data){
+  if(typeof QRCode==='undefined')throw Error('QR library did not load. Please check your internet connection and refresh.');
+  const size=Number($('sizeSelect').value),fg=$('fgColor').value,bg=$('bgColor').value;
+  const frame=$('qrFrame');frame.innerHTML='';
+  const holder=document.createElement('div');holder.id='qrOutput';frame.appendChild(holder);
+  new QRCode(holder,{text:data,width:size,height:size,colorDark:fg,colorLight:bg,correctLevel:QRCode.CorrectLevel[$('errorSelect').value]});
+  qrData=data;qrReady=true;$('qrStatus').textContent='GENERATED';$('downloadBtn').disabled=false;$('copyBtn').disabled=false;
+  $('resultNote').textContent='✓ QR code generated successfully. Test it by scanning before sharing or printing.';
+ }
+ $('generateBtn').addEventListener('click',()=>{try{const data=getData();if(data.length>2200)throw Error('This content is too long for a reliable QR code. Use a public share link instead.');renderQR(data)}catch(e){toast(e.message)}});
+ $('readTextFile').addEventListener('click',async()=>{const f=$('fileInput').files[0];if(!f){toast('Choose a text file first.');return}if(f.size>1800){toast('Text file is too large for a QR code. Use a hosted share link.');return}if(!/^(text\/|application\/(json|xml))/.test(f.type)&&!/\.(txt|csv|json|xml|md)$/i.test(f.name)){toast('Direct file content works for small text, CSV, JSON, XML or Markdown files.');return}try{const text=await f.text();setMode('text');$('textInput').value=text;$('fileStatus').textContent='Loaded '+f.name+' into the Text tab. Press Generate QR Code.';toast('Text file loaded. Generate your QR now.')}catch(e){toast('Could not read this file.')}});
+ $('downloadBtn').addEventListener('click',()=>{if(!qrReady)return;const canvas=$('qrOutput').querySelector('canvas'),img=$('qrOutput').querySelector('img');let src=canvas?canvas.toDataURL('image/png'):img?.src;if(!src){toast('QR image is not ready yet.');return}const a=document.createElement('a');a.href=src;a.download='mafia-qr-code.png';document.body.appendChild(a);a.click();a.remove();toast('QR PNG downloaded.')});
+ $('copyBtn').addEventListener('click',async()=>{if(!qrReady)return;const canvas=$('qrOutput').querySelector('canvas');if(!canvas){toast('QR image is not ready yet.');return}try{const blob=await new Promise(r=>canvas.toBlob(r,'image/png'));await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);toast('QR image copied.')}catch(e){toast('Copy image is not supported here. Use Download PNG instead.')}});
+ // Regenerate automatically when styling options change, if a QR already exists.
+ ['fgColor','bgColor','sizeSelect','errorSelect'].forEach(id=>$(id).addEventListener('change',()=>{if(qrReady){try{renderQR(qrData)}catch(e){toast(e.message)}}}));
+})();
+</script>
+</body>
+</html>
